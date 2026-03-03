@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Custom animations not in Tailwind core */
+@keyframes bounce-once {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-20px); }
+  60% { transform: translateY(-8px); }
+}
+
+.animate-bounce-once {
+  animation: bounce-once 0.6s ease-out forwards;
+}
+
+/* Subtle pulsing ring on the video while scanning */
+@keyframes pulse-ring {
+  0%, 100% { ring-color: rgb(96 165 250); opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s ease-in-out infinite;
+}
