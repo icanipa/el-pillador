@@ -36,7 +36,9 @@ export default function App() {
       // serial is e.g. "020320870 B" — split into numeric part and letter suffix
       const [numPart, seriesLetter] = serial.split(" ");
       const serialNum = parseInt(numPart, 10);
-      const fakeSeries = isNaN(serialNum) ? null : isFake(serialNum, seriesLetter);
+      const fakeSeries = isNaN(serialNum)
+        ? null
+        : isFake(serialNum, seriesLetter);
 
       setDetectedSerial(serial);
       setMatchedSeries(fakeSeries);
@@ -46,7 +48,7 @@ export default function App() {
       resetTimerRef.current = setTimeout(() => resetScan(), 4000);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   const { processImage } = useOcr(handleOcrResult);
@@ -58,7 +60,7 @@ export default function App() {
         processImage(dataUrl);
       }
     },
-    [scanState, processImage]
+    [scanState, processImage],
   );
 
   // ── Reset ────────────────────────────────────────────────────────────────
@@ -86,7 +88,9 @@ export default function App() {
         <h1 className="text-3xl font-black tracking-tight">
           <span className="text-yellow-400">El Pillador</span>
         </h1>
-        <p className="text-gray-400 text-sm mt-1">Fake Bill Detector</p>
+        <p className="text-gray-400 text-sm mt-1">
+          Detector de billetes siniestrados
+        </p>
       </header>
 
       {/* Camera error */}
@@ -110,20 +114,20 @@ export default function App() {
             onClick={startScanning}
             className="bg-yellow-400 hover:bg-yellow-300 text-gray-950 font-bold text-lg px-8 py-3 rounded-full shadow-lg transition"
           >
-            Start Scanning
+            Iniciar escaneo
           </button>
         )}
 
         {scanState === "scanning" && (
           <div className="flex flex-col items-center gap-2">
             <p className="text-blue-300 font-medium animate-pulse">
-              Scanning… point camera at serial number
+              Escaneando… apunta la cámara al número de serie
             </p>
             <button
               onClick={() => setScanState("idle")}
               className="text-gray-500 text-xs underline"
             >
-              Cancel
+              Cancelar
             </button>
           </div>
         )}

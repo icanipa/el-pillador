@@ -64,7 +64,7 @@ export function useOcr(onResult: (result: OcrResult) => void) {
         busyRef.current = false;
       }
     },
-    [onResult]
+    [onResult],
   );
 
   return { processImage };

@@ -12,7 +12,12 @@ interface ResultBadgeProps {
   onDismiss: () => void;
 }
 
-export function ResultBadge({ result, serial, matchedSeries, onDismiss }: ResultBadgeProps) {
+export function ResultBadge({
+  result,
+  serial,
+  matchedSeries,
+  onDismiss,
+}: ResultBadgeProps) {
   if (!result) return null;
 
   const isGenuine = result === "genuine";
@@ -31,7 +36,7 @@ export function ResultBadge({ result, serial, matchedSeries, onDismiss }: Result
 
       {/* Status label */}
       <h1 className="text-white text-5xl font-black tracking-wide drop-shadow mb-4">
-        {isGenuine ? "GENUINE" : "FAKE"}
+        {isGenuine ? "VÁLIDO" : "FALSO"}
       </h1>
 
       {/* Serial number */}
@@ -50,14 +55,18 @@ export function ResultBadge({ result, serial, matchedSeries, onDismiss }: Result
             </p>
           )}
           <p>
-            Range: {matchedSeries.start.toLocaleString()} – {matchedSeries.end.toLocaleString()}
+            Rango: {matchedSeries.start.toString()} – {matchedSeries.end.toString()}
           </p>
-          {matchedSeries.note && <p className="opacity-80 mt-1">{matchedSeries.note}</p>}
+          {matchedSeries.note && (
+            <p className="opacity-80 mt-1">{matchedSeries.note}</p>
+          )}
         </div>
       )}
 
       {/* Dismiss hint */}
-      <p className="mt-10 text-white/60 text-sm">Tap anywhere to scan next bill</p>
+      <p className="mt-10 text-white/60 text-sm">
+        Toca en cualquier lugar para escanear el siguiente billete
+      </p>
     </div>
   );
 }
